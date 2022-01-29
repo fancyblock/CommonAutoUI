@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Sample01 : MonoBehaviour
 {
     class SampleData01 : BaseBindingData
