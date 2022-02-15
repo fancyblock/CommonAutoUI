@@ -1,21 +1,25 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Reflection;
 
 
 public class BaseBindingData : IBindingData
 {
     public event Action ON_DATA_CHANGED;
 
-    public object GetField(string name)
+    public T GetField<T>(string name) where T : struct
     {
-        throw new NotImplementedException();
+        Type t = this.GetType();
+        FieldInfo fieldInfo = t.GetField(name);
+
+        return (T)fieldInfo.GetValue(this);
     }
 
-    public void SetField(string name, object val)
+    public void SetField<T>(string name, T val) where T : struct
     {
-        //TODO 
+        Type t = this.GetType();
+        FieldInfo propertyInfo = t.GetField(name);
+
+        propertyInfo.SetValue(this, val);
     }
 
 }
