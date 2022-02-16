@@ -5,8 +5,8 @@ public interface IBindingData
 {
     event Action ON_DATA_CHANGED;
 
-    void SetField<T>(string name, T val);
+    void SetField(string name, object val);
 
-    T GetField<T>(string name);
+    object GetField(string name);
 
 }

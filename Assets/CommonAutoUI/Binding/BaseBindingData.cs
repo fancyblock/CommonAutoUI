@@ -6,15 +6,15 @@ public class BaseBindingData : IBindingData
 {
     public event Action ON_DATA_CHANGED;
 
-    public T GetField<T>(string name)
+    public object GetField(string name)
     {
         Type t = this.GetType();
         FieldInfo fieldInfo = t.GetField(name);
 
-        return (T)fieldInfo.GetValue(this);
+        return fieldInfo.GetValue(this);
     }
 
-    public void SetField<T>(string name, T val) 
+    public void SetField(string name, object val) 
     {
         Type t = this.GetType();
         FieldInfo propertyInfo = t.GetField(name);

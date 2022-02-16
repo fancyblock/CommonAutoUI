@@ -17,7 +17,7 @@ public class BaseBindingWidget : MonoBehaviour, IBindingWidget
         m_bindingObject = bindingObject;
         m_bindingField = bindingField;
 
-        onDataChange<T>(m_bindingObject.GetField<T>(m_bindingField));
+        onDataChange<object>(m_bindingObject.GetField(m_bindingField));
 
         onBind();
     }
