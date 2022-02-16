@@ -17,23 +17,21 @@ public class InputFieldBinding : BaseBindingWidget
     }
 
 
-    private void updateValue()
+    protected override void onDataChange<T>(T val) where T : struct 
     {
-        Type t = m_bindingObject.GetType();
-        PropertyInfo propertyInfo = t.GetProperty(m_bindingField);
-
-        m_inputField.text = propertyInfo.GetValue(m_bindingObject) as string;
+        m_inputField.text = val.ToString();
     }
+
 
     private void onInputfieldValueChanged(string newValue)
     {
-        if(m_bindingObject != null && !string.IsNullOrEmpty(m_bindingField))
-        {
-            Type t = m_bindingObject.GetType();
-            PropertyInfo propertyInfo = t.GetProperty(m_bindingField);
+        //if(m_bindingObject != null && !string.IsNullOrEmpty(m_bindingField))
+        //{
+        //    Type t = m_bindingObject.GetType();
+        //    PropertyInfo propertyInfo = t.GetProperty(m_bindingField);
 
-            propertyInfo.SetValue(m_bindingObject, m_inputField.text);
-        }
+        //    propertyInfo.SetValue(m_bindingObject, m_inputField.text);
+        //}
     }
 
 }

@@ -6,44 +6,32 @@ using UnityEngine;
 
 public class BaseBindingWidget : MonoBehaviour, IBindingWidget
 {
-    private IBindingData m_bindData;
+    private IBindingData m_bindingObject;
+    private string m_bindingField;
 
 
-    public void Bind<T>(IBindingData data, string fieldName)
+    public void Bind<T>(IBindingData bindingObject, string bindingField) where T : struct
     {
         Unbind();
-
-        m_bindData = data;
-
-        m_bindData.ON_DATA_CHANGED += onDataChanged;
 
         m_bindingObject = bindingObject;
         m_bindingField = bindingField;
 
-        bindUpdateValue();
+        onDataChange<T>(m_bindingObject.GetField<T>(m_bindingField));
 
-        updateValue();
+        onBind();
     }
 
     public void Unbind()
     {
-        //TODO 
+        m_bindingObject = null;
+        m_bindingField = null;
+
+        onUnbind();
     }
 
 
-    private void onDataChanged()
-    {
-        //TODO 
-    }
-
-    private void bindUpdateValue()
-    {
-        Type t = m_bindingObject.GetType();
-        EventInfo eventInfo = t.GetEvent("ON_DATA_CHANGED");
-
-        eventInfo.AddEventHandler(m_bindingObject, new Action(updateValue));
-    }
-
-
-    protected virtual void updateWidgetValue() { }
+    protected virtual void onBind() { }
+    protected virtual void onUnbind() { }
+    protected virtual void onDataChange<T>(T val) where T : struct { }
 }
