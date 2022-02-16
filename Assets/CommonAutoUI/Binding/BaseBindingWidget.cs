@@ -10,7 +10,7 @@ public class BaseBindingWidget : MonoBehaviour, IBindingWidget
     private string m_bindingField;
 
 
-    public void Bind<T>(IBindingData bindingObject, string bindingField) where T : struct
+    public void Bind<T>(IBindingData bindingObject, string bindingField) 
     {
         Unbind();
 
@@ -33,5 +33,5 @@ public class BaseBindingWidget : MonoBehaviour, IBindingWidget
 
     protected virtual void onBind() { }
     protected virtual void onUnbind() { }
-    protected virtual void onDataChange<T>(T val) where T : struct { }
+    protected virtual void onDataChange<T>(T val) { }
 }

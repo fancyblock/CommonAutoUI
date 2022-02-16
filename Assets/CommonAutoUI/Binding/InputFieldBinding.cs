@@ -17,7 +17,7 @@ public class InputFieldBinding : BaseBindingWidget
     }
 
 
-    protected override void onDataChange<T>(T val) where T : struct 
+    protected override void onDataChange<T>(T val) 
     {
         m_inputField.text = val.ToString();
     }

@@ -24,6 +24,6 @@ public class Sample01 : MonoBehaviour
         data.m_intValue = 117;
 
         m_ui.GetWidget<InputFieldBinding>("input01").Bind<int>(data, "m_intValue");
-        m_ui.GetWidget<InputFieldBinding>("input02").Bind<int>(data, "m_intValue");
+        m_ui.GetWidget<InputFieldBinding>("input02").Bind<int>(data, "m_strValue");
     }
 }

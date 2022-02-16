@@ -6,7 +6,7 @@ public class BaseBindingData : IBindingData
 {
     public event Action ON_DATA_CHANGED;
 
-    public T GetField<T>(string name) where T : struct
+    public T GetField<T>(string name)
     {
         Type t = this.GetType();
         FieldInfo fieldInfo = t.GetField(name);
@@ -14,7 +14,7 @@ public class BaseBindingData : IBindingData
         return (T)fieldInfo.GetValue(this);
     }
 
-    public void SetField<T>(string name, T val) where T : struct
+    public void SetField<T>(string name, T val) 
     {
         Type t = this.GetType();
         FieldInfo propertyInfo = t.GetField(name);
