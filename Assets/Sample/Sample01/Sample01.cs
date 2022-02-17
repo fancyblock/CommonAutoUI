@@ -20,10 +20,13 @@ public class Sample01 : MonoBehaviour
     void Start()
     {
         SampleData01 data = new SampleData01();
+
         data.m_strValue = "Init data";
         data.m_intValue = 117;
 
         m_ui.GetWidget<InputFieldBinding>("input01").Bind<int>(data, "m_intValue");
-        m_ui.GetWidget<InputFieldBinding>("input02").Bind<int>(data, "m_strValue");
+        m_ui.GetWidget<InputFieldBinding>("input02").Bind<string>(data, "m_strValue");
+
+        m_ui.GetWidget<TextBinding>("txt01").Bind<int>(data, "m_intValue");
     }
 }
