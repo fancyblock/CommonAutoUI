@@ -14,7 +14,7 @@ public class TextBinding : BaseBindingWidget
         m_text = GetComponent<Text>();
     }
 
-    protected override void onDataChange<T>(T val) 
+    protected override void onDataChange(object val) 
     {
         m_text.text = val.ToString();
     }

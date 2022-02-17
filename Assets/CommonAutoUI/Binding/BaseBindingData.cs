@@ -4,7 +4,7 @@ using System.Reflection;
 
 public class BaseBindingData : IBindingData
 {
-    public event Action<object> ON_DATA_CHANGED;
+    public event Action<string,object> ON_DATA_CHANGED;
 
     public object GetField(string name)
     {
@@ -17,11 +17,18 @@ public class BaseBindingData : IBindingData
     public void SetField(string name, object val) 
     {
         Type t = this.GetType();
-        FieldInfo propertyInfo = t.GetField(name);
+        FieldInfo fieldInfo = t.GetField(name);
 
-        propertyInfo.SetValue(this, val);
+        fieldInfo.SetValue(this, val);
 
-        ON_DATA_CHANGED.Invoke(val);
+        ON_DATA_CHANGED.Invoke(name, val);
     }
 
+    public Type GetFieldType(string name)
+    {
+        Type t = this.GetType();
+        FieldInfo fieldInfo = t.GetField(name);
+
+        return fieldInfo.FieldType;
+    }
 }

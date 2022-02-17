@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,6 @@ using UnityEngine.UI;
 public class InputFieldBinding : BaseBindingWidget
 {
     private InputField m_inputField;
-    //TODO 
 
 
     void Awake()
@@ -16,30 +16,32 @@ public class InputFieldBinding : BaseBindingWidget
     }
 
 
-    protected override void onDataChange<T>(T val) 
+    protected override void onDataChange(object val) 
     {
-        m_inputField.text = val.ToString();
-    }
+        string strVal = val.ToString();
 
-    protected override void onBind() 
-    {
-        m_bindingObject.ON_DATA_CHANGED += onDataChanged;
-    }
-
-    protected override void onUnbind() 
-    {
-        m_bindingObject.ON_DATA_CHANGED -= onDataChanged;
+        if(m_inputField.text != strVal)
+            m_inputField.text = strVal;
     }
 
 
     private void onInputfieldValueChanged(string newValue)
     {
-        m_bindingObject.SetField(m_bindingField, newValue);
-    }
+        string val = m_bindingObject.GetField(m_bindingField).ToString();
 
-    private void onDataChanged(object newValue)
-    {
-        m_inputField.text = newValue.ToString();
-    }
+        if (val != newValue)
+        {
+            object convertedValue = null;
 
+            try
+            {
+                convertedValue = Convert.ChangeType(newValue, m_fieldType);
+                m_bindingObject.SetField(m_bindingField, convertedValue);
+            }
+            catch(Exception e)
+            {
+                Debug.LogError($"Value {newValue} can not be convert to {m_fieldType.Name} for {m_bindingObject.GetType().Name}.{m_bindingField}");
+            }
+        }
+    }
 }

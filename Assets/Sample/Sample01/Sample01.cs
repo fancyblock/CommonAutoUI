@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Sample01 : MonoBehaviour
@@ -28,5 +29,6 @@ public class Sample01 : MonoBehaviour
         m_ui.GetWidget<InputFieldBinding>("input02").Bind(data, "m_strValue");
 
         m_ui.GetWidget<TextBinding>("txt01").Bind(data, "m_strValue");
+
     }
 }
