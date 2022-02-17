@@ -11,16 +11,18 @@ public class Sample01 : MonoBehaviour
     {
         public string m_strValue;
         public int m_intValue;
+        public Sprite m_sprValue;
     }
 
 
     [SerializeField] AutoContainer m_ui;
 
+    SampleData01 data;
 
     // Start is called before the first frame update
     void Start()
     {
-        SampleData01 data = new SampleData01();
+        data = new SampleData01();
 
         data.m_strValue = "Init data";
         data.m_intValue = 117;
@@ -30,5 +32,13 @@ public class Sample01 : MonoBehaviour
 
         m_ui.GetWidget<TextBinding>("txt01").Bind(data, "m_strValue");
 
+        m_ui.GetWidget<ImageBinding>("img01").Bind(data, "m_sprValue");
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+            data.SetField("m_sprValue", Resources.Load("korea"));
     }
 }
