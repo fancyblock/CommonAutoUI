@@ -4,7 +4,7 @@ using System.Reflection;
 
 public class BaseBindingData : IBindingData
 {
-    public event Action ON_DATA_CHANGED;
+    public event Action<object> ON_DATA_CHANGED;
 
     public object GetField(string name)
     {
@@ -20,6 +20,8 @@ public class BaseBindingData : IBindingData
         FieldInfo propertyInfo = t.GetField(name);
 
         propertyInfo.SetValue(this, val);
+
+        ON_DATA_CHANGED.Invoke(val);
     }
 
 }

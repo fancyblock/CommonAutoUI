@@ -6,19 +6,18 @@ using UnityEngine;
 
 public class BaseBindingWidget : MonoBehaviour, IBindingWidget
 {
-    private IBindingData m_bindingObject;
-    private string m_bindingField;
+    protected IBindingData m_bindingObject;
+    protected string m_bindingField;
 
 
-    public void Bind<T>(IBindingData bindingObject, string bindingField) 
+    public void Bind(IBindingData bindingObject, string bindingField) 
     {
-        Unbind();
-
         m_bindingObject = bindingObject;
         m_bindingField = bindingField;
 
         onDataChange<object>(m_bindingObject.GetField(m_bindingField));
 
+        Unbind();
         onBind();
     }
 
