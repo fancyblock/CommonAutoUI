@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edd00fc7dc31204db4a04992041be47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_parent: {fileID: 0}
+  m_parent: {fileID: 1863455335}
 --- !u!114 &730204012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,8 +1387,11 @@ MonoBehaviour:
   - input01
   - input02
   - txt01
+  - img01
   m_widgets:
   - {fileID: 592872065}
   - {fileID: 957451099}
   - {fileID: 1483284091}
+  - {fileID: 730204011}
   exObjects: []
+  m_allowVirtualWidget: 0

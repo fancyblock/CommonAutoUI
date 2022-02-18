@@ -34,8 +34,7 @@ public class AutoUiTool : EditorWindow
 
         if (container != null)
         {
-            container.m_widgetNames.Clear();
-            container.m_widgets.Clear();
+            container.ClearWidgets();
         }
 
         for (int i = 0; i < node.childCount; i++)
@@ -75,8 +74,7 @@ public class AutoUiTool : EditorWindow
 
             if (container != null)
             {
-                container.m_widgetNames.Add(widget.gameObject.name);
-                container.m_widgets.Add(widget);
+                container.AddWidget(widget.gameObject.name, widget);
 
                 widget.m_parent = container;
 

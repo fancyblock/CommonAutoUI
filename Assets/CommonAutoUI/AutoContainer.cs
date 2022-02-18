@@ -3,20 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 public class AutoContainer : MonoBehaviour, IAutoContainer
 {
-    [SerializeField]
-    private string m_id;
-    public List<string> m_widgetNames = new List<string>();
-    public List<AutoWidget> m_widgets = new List<AutoWidget>();
-    [SerializeField]
-    private List<GameObject> exObjects;
+    [SerializeField] private string m_id;
+    [SerializeField] private List<string> m_widgetNames = new List<string>();
+    [SerializeField] private List<AutoWidget> m_widgets = new List<AutoWidget>();
+    [SerializeField] private List<GameObject> exObjects;
+
+    [SerializeField] private bool m_allowVirtualWidget = true;
 
     private bool m_init = false;
     private Dictionary<string, AutoWidget> m_widgetDic = new Dictionary<string, AutoWidget>();
 
     private Action<string> m_buttonClkHook;
 
+
+#if UNITY_EDITOR
+
+    public void ClearWidgets()
+    {
+        m_widgetNames.Clear();
+        m_widgets.Clear();
+    }
+
+    public void AddWidget(string name, AutoWidget widget)
+    {
+        m_widgetNames.Add(name);
+        m_widgets.Add(widget);
+    }
+
+#endif
 
     /// <summary>
     /// init 
@@ -54,7 +71,10 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
         if (widgetIndex >= 0)
             return m_widgets[widgetIndex];
 
-        return VirtualWidget.Instance;
+        if(m_allowVirtualWidget)
+            return VirtualWidget.Instance;
+
+        return null;
     }
 
     /// <summary>

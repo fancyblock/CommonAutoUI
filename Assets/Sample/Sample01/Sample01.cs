@@ -34,11 +34,13 @@ public class Sample01 : MonoBehaviour
 
         m_ui.GetWidget<ImageBinding>("img01").Bind(data, "m_sprValue");
 
+        m_ui.SetValue("aaa", "asdf");
+
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space))
-            data.SetField("m_sprValue", Resources.Load("korea"));
+            data.SetField("m_sprValue", Resources.Load<Sprite>("korea"));
     }
 }
