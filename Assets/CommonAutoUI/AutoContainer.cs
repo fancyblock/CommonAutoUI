@@ -185,6 +185,18 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
         m_buttonClkHook = hook;
     }
 
+    public void Bind<T>(string widgetName, IBindingData data, string fieldName) where T : BaseBindingWidget
+    {
+        T bindingWidget = GetWidget<T>(widgetName);
+
+        if (bindingWidget == null)
+        {
+            bindingWidget = GetWidget(widgetName).GetGameObj().AddComponent<T>();
+        }
+
+        bindingWidget.Bind(data, fieldName);
+    }
+
 
     private void buttonClkHook(string widgetName)
     {

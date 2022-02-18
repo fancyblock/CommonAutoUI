@@ -27,12 +27,12 @@ public class Sample01 : MonoBehaviour
         data.m_strValue = "Init data";
         data.m_intValue = 117;
 
-        m_ui.GetWidget<InputFieldBinding>("input01").Bind(data, "m_intValue");
-        m_ui.GetWidget<InputFieldBinding>("input02").Bind(data, "m_strValue");
+        m_ui.Bind<InputFieldBinding>("input01", data, "m_intValue");
+        m_ui.Bind<InputFieldBinding>("input02", data, "m_strValue");
 
-        m_ui.GetWidget<TextBinding>("txt01").Bind(data, "m_strValue");
+        m_ui.Bind<TextBinding>("txt01", data, "m_strValue");
 
-        m_ui.GetWidget<ImageBinding>("img01").Bind(data, "m_sprValue");
+        m_ui.Bind<ImageBinding>("img01", data, "m_sprValue");
 
         m_ui.SetValue("aaa", "asdf");
 

@@ -22,6 +22,8 @@ public interface IAutoContainer
     float GetImageFillAmount(string widgetName);
     void PlayAnimation(string widgetName, string aniName);
 
+    void Bind<T>(string widgetName, IBindingData data, string fieldName) where T : BaseBindingWidget;
+
     void SetButtonClkHook(Action<string> hook);
 
     GameObject GetExObject(int index);
