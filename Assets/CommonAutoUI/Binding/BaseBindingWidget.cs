@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -39,6 +37,15 @@ public class BaseBindingWidget : MonoBehaviour, IBindingWidget
 
         m_bindingObject = null;
         m_bindingField = null;
+    }
+
+
+    protected object BINDING_DATA
+    {
+        get
+        {
+            return m_bindingObject.GetField(m_bindingField);
+        }
     }
 
 

@@ -27,7 +27,7 @@ public class InputFieldBinding : BaseBindingWidget
 
     private void onInputfieldValueChanged(string newValue)
     {
-        string val = m_bindingObject.GetField(m_bindingField).ToString();
+        string val = BINDING_DATA.ToString();
 
         if (val != newValue)
         {
