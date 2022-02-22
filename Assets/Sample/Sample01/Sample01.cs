@@ -12,6 +12,7 @@ public class Sample01 : MonoBehaviour
         public string m_strValue;
         public int m_intValue;
         public Sprite m_sprValue;
+        public bool m_boolValue;
     }
 
 
@@ -34,7 +35,10 @@ public class Sample01 : MonoBehaviour
 
         m_ui.Bind<ImageBinding>("img01", data, "m_sprValue");
 
-        m_ui.SetValue("aaa", "asdf");
+        m_ui.Bind<TextBinding>("txt02", data, "m_boolValue");
+        m_ui.Bind<ToggleBinding>("toggle01", data, "m_boolValue");
+
+        //m_ui.SetValue("aaa", "asdf");
 
     }
 
