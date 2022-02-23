@@ -408,6 +408,9 @@ MonoBehaviour:
   m_itemSize: {x: 120, y: 80}
   m_itemInterval: {x: 10, y: 6}
   m_perItemCount: 1
+  m_scrollRect: {fileID: 618739746}
+  m_itemContainer: {fileID: 554989214}
+  m_direction: 0
 --- !u!1 &900716322
 GameObject:
   m_ObjectHideFlags: 0
