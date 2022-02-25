@@ -15,22 +15,22 @@ public class EasyScrollView : MonoBehaviour
 
     public event Action<int, GameObject> ON_ITEM_FILL;
 
-    [SerializeField] private GameObject m_itemPrefab;
-    [SerializeField] private Vector2 m_itemSize;
-    [SerializeField] private Vector2 m_itemInterval;
-    [SerializeField] private int m_perItemCount = 1;                // 同行/列Item个数
+    [SerializeField] protected GameObject m_itemPrefab;
+    [SerializeField] protected Vector2 m_itemSize;
+    [SerializeField] protected Vector2 m_itemInterval;
+    [SerializeField] protected int m_perItemCount = 1;                // 同行/列Item个数
 
-    [SerializeField]private ScrollRect m_scrollRect;
-    [SerializeField]private RectTransform m_itemContainer;
-    [SerializeField] private Dir m_direction;
+    [SerializeField] protected ScrollRect m_scrollRect;
+    [SerializeField] protected RectTransform m_itemContainer;
+    [SerializeField] protected Dir m_direction;
 
-    private int m_itemCount;
-    private int m_maxVisualCount;
+    protected int m_itemCount;
+    protected int m_maxVisualCount;
 
-    private List<GameObject> m_pendingItemList = new List<GameObject>();
-    private float m_currentScrollPosotion;
-    private Dictionary<int, GameObject> m_itemDic = new Dictionary<int, GameObject>();
-    private List<int> m_currentPageIndeies = new List<int>();
+    protected List<GameObject> m_pendingItemList = new List<GameObject>();
+    protected float m_currentScrollPosotion;
+    protected Dictionary<int, GameObject> m_itemDic = new Dictionary<int, GameObject>();
+    protected List<int> m_currentPageIndeies = new List<int>();
 
 
     private void Awake()
@@ -120,11 +120,11 @@ public class EasyScrollView : MonoBehaviour
         index = Mathf.Clamp(index, 0, m_itemCount - 1);
 
         if (m_direction == Dir.vertical)
-            m_itemContainer.localPosition = new Vector2(m_itemContainer.localPosition.x, -Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.y + m_itemInterval.y));
+            m_itemContainer.localPosition = new Vector2(m_itemContainer.localPosition.x, Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.y + m_itemInterval.y));
         else if (m_direction == Dir.horizontal)
             m_itemContainer.localPosition = new Vector3( -Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.x + m_itemInterval.x), m_itemContainer.localPosition.y);
 
-        refreshView();
+        refreshView(true);
     }
 
 
@@ -206,7 +206,7 @@ public class EasyScrollView : MonoBehaviour
         return position;
     }
 
-    private void refreshView()
+    private void refreshView(bool forceRefresh = false)
     {
         float scrollPosition = 0;
 
@@ -215,7 +215,7 @@ public class EasyScrollView : MonoBehaviour
         else if (m_direction == Dir.horizontal)
             scrollPosition = m_itemContainer.localPosition.x;
 
-        if (Mathf.Abs(m_currentScrollPosotion - scrollPosition) < float.Epsilon)
+        if (!forceRefresh && Mathf.Abs(m_currentScrollPosotion - scrollPosition) < float.Epsilon)
             return;
 
         if (m_direction == Dir.vertical)
