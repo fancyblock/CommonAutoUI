@@ -115,6 +115,19 @@ public class EasyScrollView : MonoBehaviour
             initHorizontalItems();
     }
 
+    public void SnapTo(int index)
+    {
+        index = Mathf.Clamp(index, 0, m_itemCount - 1);
+
+        if (m_direction == Dir.vertical)
+            m_itemContainer.localPosition = new Vector2(m_itemContainer.localPosition.x, -Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.y + m_itemInterval.y));
+        else if (m_direction == Dir.horizontal)
+            m_itemContainer.localPosition = new Vector3( -Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.x + m_itemInterval.x), m_itemContainer.localPosition.y);
+
+        refreshView();
+    }
+
+
     private void initVerticalItems()
     {
         m_currentScrollPosotion = m_itemContainer.localPosition.y;
