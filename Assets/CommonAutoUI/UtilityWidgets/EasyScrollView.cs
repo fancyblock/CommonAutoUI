@@ -78,8 +78,6 @@ public class EasyScrollView : MonoBehaviour
 
                 m_maxVisualCount = Mathf.CeilToInt(viewCount) + 1;
                 m_maxVisualCount *= m_perItemCount;
-
-                m_maxVisualCount = Math.Min(m_maxVisualCount, count);
             }
             else if(m_direction == Dir.horizontal)
             {
@@ -88,8 +86,6 @@ public class EasyScrollView : MonoBehaviour
 
                 m_maxVisualCount = Mathf.CeilToInt(viewCount) + 1;
                 m_maxVisualCount *= m_perItemCount;
-
-                m_maxVisualCount = Math.Min(m_maxVisualCount, count);
             }
 
             for (int i = 0; i < m_maxVisualCount; i++)
