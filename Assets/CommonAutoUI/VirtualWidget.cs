@@ -79,4 +79,7 @@ public class VirtualWidget : IAutoWidget
     public GameObject GetGameObj() { return null; }
 
     public void SetRectSize(Vector2 size) { }
+
+    public void ScrollLoad(int count, Action<int, GameObject> setFunc) { }
+
 }

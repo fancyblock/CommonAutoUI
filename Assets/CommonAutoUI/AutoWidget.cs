@@ -422,4 +422,11 @@ public class AutoWidget : MonoBehaviour , IAutoWidget
         var trans = gameObject.GetComponent<RectTransform>();
         trans.sizeDelta = size;
     }
+
+    public void ScrollLoad(int count, Action<int, GameObject> setFunc)
+    {
+        EasyScrollView scrollView = gameObject.GetComponent<EasyScrollView>();
+        scrollView.Load(count, setFunc);
+    }
+
 }

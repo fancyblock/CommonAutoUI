@@ -180,6 +180,12 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
         GetWidget(widgetName).PlayAnimation(aniName);
     }
 
+    public void ScrollLoad(string widgetName, int count, Action<int, GameObject> setFunc)
+    {
+        GetWidget(widgetName).ScrollLoad(count, setFunc);
+    }
+
+
     public void SetButtonClkHook(Action<string> hook)
     {
         m_buttonClkHook = hook;

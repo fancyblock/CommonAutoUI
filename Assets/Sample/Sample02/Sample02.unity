@@ -407,7 +407,7 @@ MonoBehaviour:
   m_itemPrefab: {fileID: 4649320856851250127, guid: c93129beddb8b4942a68926125489ce5, type: 3}
   m_itemSize: {x: 120, y: 80}
   m_itemInterval: {x: 10, y: 6}
-  m_perItemCount: 1
+  m_perItemCount: 3
   m_scrollRect: {fileID: 618739746}
   m_itemContainer: {fileID: 554989214}
   m_direction: 0

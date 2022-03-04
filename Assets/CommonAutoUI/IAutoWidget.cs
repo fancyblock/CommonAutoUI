@@ -61,4 +61,7 @@ public interface IAutoWidget
     void SetDropListItems(List<string> items);
 
     void SetRectSize(Vector2 size);
+
+    void ScrollLoad(int count, Action<int, GameObject> setFunc);
+
 }

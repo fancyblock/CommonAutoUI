@@ -33,44 +33,35 @@ public class EasyScrollView : MonoBehaviour
     protected List<int> m_currentPageIndeies = new List<int>();
 
 
-    private void Awake()
+    public void Load(int count, Action<int, GameObject> setFunc)
     {
-        m_scrollRect.onValueChanged.AddListener(onScrollChange);
-    }
+        ON_ITEM_FILL -= setFunc;
+        ON_ITEM_FILL += setFunc;
 
-    // Update is called once per frame
-    private void Update() 
-    {
-        refreshView();
+        Load(count);
     }
-
-    private void onScrollChange(Vector2 arg0)
-    {
-        refreshView();
-    }
-
 
     public void Load(int count)
     {
         m_itemCount = count;
 
-        int realCount = count / m_perItemCount + ( count % m_perItemCount > 0 ? 1 : 0);
+        int realCount = count / m_perItemCount + (count % m_perItemCount > 0 ? 1 : 0);
 
         // size the content
-        if(m_direction == Dir.vertical)
+        if (m_direction == Dir.vertical)
         {
             m_itemContainer.sizeDelta = new Vector2(m_itemContainer.sizeDelta.x, (m_itemSize.y + m_itemInterval.y) * realCount);
         }
-        else if(m_direction == Dir.horizontal)
+        else if (m_direction == Dir.horizontal)
         {
-            m_itemContainer.sizeDelta = new Vector2((m_itemSize.x + m_itemInterval.x) * realCount , m_itemContainer.sizeDelta.y);
+            m_itemContainer.sizeDelta = new Vector2((m_itemSize.x + m_itemInterval.x) * realCount, m_itemContainer.sizeDelta.y);
         }
 
         // precreate the items
         if (m_pendingItemList.Count == 0 && m_itemDic.Count == 0)
         {
             m_maxVisualCount = 0;
-            
+
             if (m_direction == Dir.vertical)
             {
                 float viewHeight = GetComponent<RectTransform>().rect.height;
@@ -79,7 +70,7 @@ public class EasyScrollView : MonoBehaviour
                 m_maxVisualCount = Mathf.CeilToInt(viewCount) + 1;
                 m_maxVisualCount *= m_perItemCount;
             }
-            else if(m_direction == Dir.horizontal)
+            else if (m_direction == Dir.horizontal)
             {
                 float viewWidth = GetComponent<RectTransform>().rect.width;
                 float viewCount = viewWidth / (m_itemSize.x + m_itemInterval.x);
@@ -118,11 +109,30 @@ public class EasyScrollView : MonoBehaviour
         if (m_direction == Dir.vertical)
             m_itemContainer.localPosition = new Vector2(m_itemContainer.localPosition.x, Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.y + m_itemInterval.y));
         else if (m_direction == Dir.horizontal)
-            m_itemContainer.localPosition = new Vector3( -Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.x + m_itemInterval.x), m_itemContainer.localPosition.y);
+            m_itemContainer.localPosition = new Vector3(-Mathf.FloorToInt((float)index / (float)m_perItemCount) * (m_itemSize.x + m_itemInterval.x), m_itemContainer.localPosition.y);
 
         refreshView(true);
     }
 
+
+    private void Awake()
+    {
+        m_scrollRect.onValueChanged.AddListener(onScrollChange);
+    }
+
+    // Update is called once per frame
+    private void Update() 
+    {
+        refreshView();
+    }
+
+    private void onScrollChange(Vector2 arg0)
+    {
+        refreshView();
+    }
+
+
+    #region private part
 
     private void initVerticalItems()
     {
@@ -283,4 +293,6 @@ public class EasyScrollView : MonoBehaviour
         m_pendingItemList.Add(item);
         item.SetActive(false);
     }
+
+    #endregion
 }
