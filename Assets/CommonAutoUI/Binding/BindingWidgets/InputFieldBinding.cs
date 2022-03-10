@@ -36,7 +36,11 @@ public class InputFieldBinding : BaseBindingWidget
             try
             {
                 convertedValue = Convert.ChangeType(newValue, m_fieldType);
-                m_bindingObject.SetField(m_bindingField, convertedValue);
+
+                object oldConvertedValue = Convert.ChangeType(val, m_fieldType);    // 用于修复输入数字时0和0.时，导致的每次输入到0.又会被重置为0的情况
+
+                if(!convertedValue.Equals(oldConvertedValue))
+                    m_bindingObject.SetField(m_bindingField, convertedValue);
             }
             catch(Exception e)
             {
