@@ -33,6 +33,8 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
         m_widgets.Add(widget);
     }
 
+    public List<string> WIDGET_NAMES { get { return m_widgetNames; } }
+
 #endif
 
     /// <summary>
