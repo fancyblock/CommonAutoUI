@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface IAutoContainer  
 {
     void SetEnable(bool enable);
     int LAST_BTN_FRAME { get; set; }
+
+    List<AutoWidget> WIDGETS { get; }
 
     IAutoWidget GetWidget(string name);
     T GetWidget<T>(string name);
@@ -23,6 +26,9 @@ public interface IAutoContainer
     void PlayAnimation(string widgetName, string aniName);
 
     void ScrollLoad(string widgetName, int count, Action<int, GameObject> setFunc);
+    void ShowTab(string widgetName, int index);
+    void ShowTab(string widgetName, string name);
+
 
     void Bind<T>(string widgetName, IBindingData data, string fieldName) where T : BaseBindingWidget;
 

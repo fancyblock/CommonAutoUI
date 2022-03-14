@@ -35,6 +35,12 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
 
     public List<string> WIDGET_NAMES { get { return m_widgetNames; } }
 
+    public bool ALLOW_VIRTUAL_WIDGET
+    {
+        get { return m_allowVirtualWidget; }
+        set { m_allowVirtualWidget = value; }
+    }
+
 #endif
 
     /// <summary>
@@ -95,6 +101,11 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
             return m_widgets[widgetIndex].GetComponent<T>();
 
         return default(T);
+    }
+
+    public List<AutoWidget> WIDGETS 
+    {
+        get { return m_widgets; }
     }
 
     public int LAST_BTN_FRAME { get; set; }
@@ -185,6 +196,16 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
     public void ScrollLoad(string widgetName, int count, Action<int, GameObject> setFunc)
     {
         GetWidget(widgetName).ScrollLoad(count, setFunc);
+    }
+
+    public void ShowTab(string widgetName, int index)
+    {
+        GetWidget(widgetName).ShowTab(index);
+    }
+
+    public void ShowTab(string widgetName, string name)
+    {
+        GetWidget(widgetName).ShowTab(name);
     }
 
 

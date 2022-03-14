@@ -64,4 +64,8 @@ public interface IAutoWidget
 
     void ScrollLoad(int count, Action<int, GameObject> setFunc);
 
+    void ShowTab(int index);
+
+    void ShowTab(string name);
+
 }

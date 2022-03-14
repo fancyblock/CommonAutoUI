@@ -82,4 +82,8 @@ public class VirtualWidget : IAutoWidget
 
     public void ScrollLoad(int count, Action<int, GameObject> setFunc) { }
 
+    public void ShowTab(int index) { }
+
+    public void ShowTab(string name) { }
+
 }

@@ -419,14 +419,26 @@ public class AutoWidget : MonoBehaviour , IAutoWidget
 
     public void SetRectSize(Vector2 size)
     {
-        var trans = gameObject.GetComponent<RectTransform>();
+        var trans = GetComponent<RectTransform>();
         trans.sizeDelta = size;
     }
 
     public void ScrollLoad(int count, Action<int, GameObject> setFunc)
     {
-        EasyScrollView scrollView = gameObject.GetComponent<EasyScrollView>();
+        EasyScrollView scrollView = GetComponent<EasyScrollView>();
         scrollView.Load(count, setFunc);
+    }
+
+    public void ShowTab(int index)
+    {
+        EasyTabView tabView = GetComponent<EasyTabView>();
+        tabView.ShowTab(index);
+    }
+
+    public void ShowTab(string name)
+    {
+        EasyTabView tabView = GetComponent<EasyTabView>();
+        tabView.ShowTab(name);
     }
 
 }
