@@ -346,9 +346,10 @@ public class AutoWidget : MonoBehaviour , IAutoWidget
         if (m_toggle == null)
         {
             m_toggle = GetComponent<Toggle>();
-            m_toggle.onValueChanged.RemoveAllListeners();
-            m_toggle.onValueChanged.AddListener(onToggleValueChanged);
         }
+
+        m_toggle.onValueChanged.RemoveAllListeners();
+        m_toggle.onValueChanged.AddListener(onToggleValueChanged);
 
         m_toggleChangeEvent = onToggleChange;
     }
