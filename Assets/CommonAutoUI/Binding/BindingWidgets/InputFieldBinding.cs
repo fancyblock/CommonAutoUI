@@ -44,7 +44,7 @@ public class InputFieldBinding : BaseBindingWidget
             }
             catch(Exception e)
             {
-                Debug.LogError($"Value {newValue} can not be convert to {m_fieldType.Name} for {m_bindingObject.GetType().Name}.{m_bindingField}");
+                Debug.Log($"Value {newValue} can not be convert to {m_fieldType.Name} for {m_bindingObject.GetType().Name}.{m_bindingField}");
             }
         }
     }
