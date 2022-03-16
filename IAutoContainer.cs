@@ -24,6 +24,7 @@ public interface IAutoContainer
     void SetImageFillAmount(string widgetName, float value);
     float GetImageFillAmount(string widgetName);
     void PlayAnimation(string widgetName, string aniName);
+    bool GetToggleValue(string widgetName);
     void SetToggleValue(string widgetName, bool isOn);
     void SetToggleChangeEvent(string widgetName, Action<bool> onToggleChange);
 

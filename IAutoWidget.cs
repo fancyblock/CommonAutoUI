@@ -58,6 +58,8 @@ public interface IAutoWidget
 
     void SetToggleValue(bool isOn);
 
+    void SetToggleGroupEvent(Action<bool, string> onToggled);
+
     void SetDropListItems(List<string> items);
 
     void SetRectSize(Vector2 size);

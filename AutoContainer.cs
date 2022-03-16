@@ -189,6 +189,11 @@ public class AutoContainer : MonoBehaviour, IAutoContainer
         GetWidget(widgetName).PlayAnimation(aniName);
     }
 
+    public bool GetToggleValue(string widgetName)
+    {
+        return GetWidget(widgetName).GetToggleValue();
+    }
+
     public void SetToggleValue(string widgetName, bool isOn)
     {
         GetWidget(widgetName).SetToggleValue(isOn);

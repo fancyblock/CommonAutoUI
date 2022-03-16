@@ -32,6 +32,7 @@ public class AutoWidget : MonoBehaviour , IAutoWidget
     private Text m_label = null;
     private TextMeshProUGUI m_labelTMP = null;
     private Toggle m_toggle = null;
+    private ToggleGroup m_toggleGroup = null;
     private Image m_image = null;
     private RawImage m_rawImage = null;
     private Animator m_animator = null;
@@ -358,6 +359,16 @@ public class AutoWidget : MonoBehaviour , IAutoWidget
     {
         if (m_eventEnable && m_toggleChangeEvent != null)
             m_toggleChangeEvent(toggled);
+    }
+
+    public void SetToggleGroupEvent(Action<bool, string> onToggled)
+    {
+        if(m_toggleGroup == null)
+        {
+            m_toggleGroup = GetComponent<ToggleGroup>();
+        }
+
+        //TODO 
     }
 
     public void SetImageColor(Color color)

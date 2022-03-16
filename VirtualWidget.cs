@@ -70,6 +70,8 @@ public class VirtualWidget : IAutoWidget
 
     public void SetToggleValue(bool isOn) { }
 
+    public void SetToggleGroupEvent(Action<bool, string> onToggled) { }
+
     public void SetInputFieldVal(string val) { }
 
     public string GetInputFieldVal() { return ""; }
