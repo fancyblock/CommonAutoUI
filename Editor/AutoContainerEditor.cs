@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,8 +18,15 @@ public class AutoContainerEditor : Editor
         }
         else
         {
-            foreach (string widget in widgets)
-                EditorGUILayout.LabelField(widget);
+            for(int i = 0; i < widgets.Count; i++)
+            {
+                string widgetName = widgets[i];
+
+                if (widgets.Count(w => w == widgetName) > 1)
+                    EditorGUILayout.ObjectField(ac.WIDGETS[i], typeof(AutoWidget));
+                else
+                    EditorGUILayout.LabelField(widgetName);
+            }
         }
 
         EditorGUILayout.Space();

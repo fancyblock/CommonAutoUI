@@ -24,6 +24,8 @@ public interface IAutoContainer
     void SetImageFillAmount(string widgetName, float value);
     float GetImageFillAmount(string widgetName);
     void PlayAnimation(string widgetName, string aniName);
+    void SetToggleValue(string widgetName, bool isOn);
+    void SetToggleChangeEvent(string widgetName, Action<bool> onToggleChange);
 
     void ScrollLoad(string widgetName, int count, Action<int, GameObject> setFunc);
     void ShowTab(string widgetName, int index);
